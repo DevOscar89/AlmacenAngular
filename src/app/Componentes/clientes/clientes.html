@@ -1,0 +1,350 @@
+ <form class="container" [formGroup]="clienteFormulario" (ngSubmit)="onSubmit()">
+     <div class="row">
+       <div class="col-md-12">
+             <h3 class="form-label text-center">Registro de Clientes</h3>
+        </div> 
+        <div class="form-group col-md-6">
+            <label for="CodTipoDocumento" class="form-label">Tipo Documento :</label>
+             <small class="form-text fw-light ">
+                        (*) 
+              </small>   
+            <select 
+              type="text"
+              id="CodTipoDocumento"
+              class="form-select form-select-sm"
+              name="CodTipoDocumento"
+              formControlName="CodTipoDocumento"
+              >
+              <option selected value="">Seleccione un tipo de documento</option>
+              @for(tipoDocumento of tipoDocumento(); track tipoDocumento.Id){
+              <option [value]="tipoDocumento.Codigo">{{ tipoDocumento.Descripcion }}</option>           
+              }      
+            </select> 
+        </div>
+        
+        <div class="form-group col-md-6">
+            <label for="Documento" class="form-label">Numero Documento :</label>
+             <small class="form-text fw-light ">
+                        (*) 
+              </small> 
+            <input 
+              type="text"
+              class="form-control form-control-sm"
+              id="Documento"
+              name="Documento"
+              formControlName="Documento"
+              required
+            />   
+            <!-- @if(clienteFormulario.get('Documento')?.invalid){
+              <div>
+                  <small class="fw-light">
+                        Este campo es obligatorio.
+                  </small>
+              </div>             
+            }                   -->
+         
+      </div>    
+    </div> 
+    
+     <div class="row">
+         <div class="form-group col-md-6">
+        <label for="PrimerNombre" class="form-label">Primer Nombre :</label>
+           <small class="form-text fw-light ">
+                        (*) 
+              </small> 
+        <input 
+          type="text"
+          class="form-control form-control-sm"
+          id="PrimerNombre"
+          name="PrimerNombre"
+          appUppercase
+          formControlName="PrimerNombre"
+        /> 
+  
+    </div>     
+    
+     <div class="form-group col-md-6">
+        <label for="PrimerNombre" class="form-label">Segundo Nombre :</label>
+        <input 
+          type="text"
+          class="form-control form-control-sm"
+          id="SegundoNomnbre"
+          name="SegundoNomnbre"
+          appUppercase
+          formControlName="SegundoNombre"
+        /> 
+    </div>
+        </div>
+     <div class="row">
+         <div class="form-group col-md-6">
+        <label for="PrimerApellido" class="form-label">Primer Apellido :</label>
+           <small class="form-text fw-light">
+                        (*) 
+              </small> 
+        <input 
+          type="text"
+          class="form-control form-control-sm"
+          id="PrimerApellido"
+          name="PrimerApellido"
+          appUppercase
+          formControlName="PrimerApellido"
+        /> 
+ 
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="SegundoApellido" class="form-label">Segundo Apellido :</label>
+           <small class="form-text fw-light ">
+                        (*) 
+              </small> 
+        <input 
+          type="text"
+          class="form-control  form-control-sm"
+          id="SegundoApellido"
+          name="SegundoApellido"
+          appUppercase
+          formControlName="SegundoApellido"
+        /> 
+     
+    </div> 
+    </div>
+
+     <div class="row">
+       <div class="form-group col-md-6">
+        <label for="FechaNacimiento" class="form-label">Fecha Nacimiento :</label>
+           <small class="form-text fw-light ">
+                        (*) 
+              </small> 
+        <input 
+          type="date"
+          class="form-control form-control-sm"
+          id="FechaNacimiento"
+          name="FechaNacimiento"
+          formControlName="FechaNacimiento"
+        /> 
+       
+    </div>
+
+    
+    <div class="form-group col-md-6">
+        <label for="paisNacimiento" class="form-label">País Nacimiento :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="paisNacimiento"
+          name="PaisNacimiento"
+          formControlName="PaisNacimiento"
+          (change)="changePaisNacimiento($event)">
+          <option value="" selected>Seleccione un país</option>
+          @for(pais of paises(); track pais.Id){
+            <option [value]="pais.Id">{{ pais.Nombre }}</option>
+          }
+        </select> 
+      
+    </div>    
+    </div>
+     <div class="row">
+        
+    <div class="form-group col-md-6" >
+        <label for="DepartamentoNacimiento" class="form-label">Departamento Nacimiento :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="DepartamentoNacimiento"
+          name="DepartamentoNacimiento"
+          formControlName="DepartamentoNacimiento"
+          (change)="changeDepartamentoNacimiento($event)">
+          <option value="" selected>Seleccione un departamento</option>
+          @for(departamento of departamentos(); track departamento.Id){
+            <option [value]="departamento.Id">{{ departamento.Nombre }}</option>
+          }
+        </select> 
+    
+    </div>
+
+      <div class="form-group col-md-6">
+        <label for="CiudadNacimiento" class="form-label">Ciudad Nacimiento :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+          <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="CiudadNacimiento"
+          name="CiudadNacimiento"
+          formControlName="CiudadNacimiento"
+          >
+          <option value="" selected>Seleccione un municipio</option>
+          @for(municipio of municipios(); track municipio.Id){
+            <option [value]="municipio.Id">{{ municipio.Nombre }}</option>
+          }
+        </select> 
+          
+    </div>
+   </div>    
+<div class="row">
+  <div class="form-group col-md-6">
+        <label for="PaisResidencia" class="form-label">País Residencia :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+          <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="paisResidencia"
+          name="PaisResidencia"
+          formControlName="PaisResidencia"
+          (change)="changePaisResidencia($event)">
+          <option value="" selected>Seleccione un país</option>
+          @for(pais of paisesResidencia(); track pais.Id){
+            <option [value]="pais.Id">{{ pais.Nombre }}</option>
+          }
+        </select> 
+        
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="DepartamentoResidencia" class="form-label">Departamento residencia :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="DepartamentoResidencia"
+          name="DepartamentoResidencia"
+          formControlName="DepartamentoResidencia"
+          (change)="changeDepartamentoResidencia($event)">
+          <option value="" selected>Seleccione un departamento</option>
+          @for(departamento of departamentosResidencia(); track departamento.Id){
+            <option [value]="departamento.Id">{{ departamento.Nombre }}</option>
+          }
+        </select> 
+      
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label for="CiudadResidencia" class="form-label">Ciudad residencia :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+         <select 
+          type="text"
+          class="form-select form-select-sm"
+          id="CiudadResidencia"
+          name="CiudadResidencia"
+          formControlName="CiudadResidencia"
+          >
+          <option value="" selected>Seleccione un municipio</option>
+          @for(municipio of municipiosResidencia(); track municipio.Id){
+            <option [value]="municipio.Id">{{ municipio.Nombre }}</option>
+          }
+        </select> 
+ 
+    </div>
+
+     <div class="form-group col-md-6">
+        <label for="Direccion" class="form-label">Dirección :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <input 
+          type="text"
+          class="form-control form-control-sm"
+          id="Direccion"
+          name="Direccion"
+          formControlName="Direccion"
+        /> 
+  
+    </div>
+</div>
+<div class="row">
+     <div class="form-group col-md-6">
+        <label for="Correo" class="form-label">Correo :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <input 
+          type="email"
+          class="form-control form-control-sm"
+          id="Correo"
+          name="Correo"
+          formControlName="Correo"
+        /> 
+ 
+    </div>
+
+      <div class="form-group col-md-6">
+        <label for="Celular" class="form-label">Celular :</label>
+          <small class="form-text fw-light ">
+                        (*) 
+              </small>  
+        <input 
+          type="text"
+          class="form-control   form-control-sm"
+          id="Celular"
+          name="Celular"
+          formControlName="Celular"
+        /> 
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+            <label for="CodTipoDocumento" class="form-label">Sexo :</label>    
+            <select 
+              type="text"
+              id="Sexo"
+              class="form-select form-select-sm"
+              name="Sexo"
+              formControlName="Sexo"
+            >
+            <option value="" selected>Seleccione un sexo</option>
+              @for(sexo of sexo(); track sexo.Id){
+              <option [value]="sexo.Codigo">{{ sexo.Descripcion }}</option>           
+              }            
+          </select> 
+
+        </div>
+          <div class="form-group col-md-6">
+            <label for="CodTipoDocumento" class="form-label">Ocupacion :</label>    
+            <select 
+              type="text"
+              id="Ocupacion"
+              class="form-select form-select-sm"
+              name="Ocupacion"
+              formControlName="Ocupacion"
+            >
+             <option selected value="">Seleccione una ocupación</option>
+              @for(ocupacion of ocupacion(); track ocupacion.Id){
+              <option [value]="ocupacion.Codigo">{{ ocupacion.Descripcion }}</option>           
+              }                    
+          </select> 
+                
+        </div>
+      
+</div>
+<div class="row">
+    <div class="form-group col-md-12 mt-5">
+           <small class="fw-light">
+                        Los campos con (*) son obligatorios.
+              </small>   
+      </div>
+      </div>
+  <div class="d-grid gap-2 mt-5">
+       <button class="btn btn-primary btn-sm" type="submit">Registrar</button>
+       <button class="btn btn-secondary btn-sm" type="button">Cancelar</button>
+  </div>  
+</form>
+
+
+
+

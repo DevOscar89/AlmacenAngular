@@ -1,0 +1,21 @@
+export interface cliente {  
+    Id :  number ,
+	CodTipoDocumento : string ,
+	Documento : string ,
+	PrimerNombre : string ,
+	SegundoNomnbre : string ,
+	PrimerApellido : string ,
+	SegundoApellido : string ,
+	Sexo : string ,
+	FechaNacimiento :  Date ,
+	CiudadNacimiento : string ,
+	DepartamentoNacimiento : string ,
+	PaisNacimiento : string ,
+	PaisResidencia : string ,
+	DepartamentoResidencia : string ,
+	CiudadRecidencia : string ,
+	Direccion : string ,
+	Correo : string ,
+	Celular : number ,
+	FechaRegistro :  Date 
+}
