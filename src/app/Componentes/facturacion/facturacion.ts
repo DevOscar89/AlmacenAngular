@@ -26,23 +26,8 @@ export class Facturacion {
   error = signal<string | null>(null);
 
   constructor(){
-    this.cargarSexo(); 
     this.cargarDepartamentos(); 
-  }
-
-  cargarSexo() : void {
-    this.FacturacionService.obtenerSexo().subscribe({
-      next: (data) => {
-        this.sexo.set(data);
-        this.cargando.set(false);
-      },
-      error: (err) => {
-        console.error('Error al cargar los datos',err);
-        this.error.set('Error al cargar los datos');
-        this.cargando.set(false);
-      }
-    });
-  }
+  } 
 
   ChangeDepartamento(event: any) : void {
     const selectElement = event.target as HTMLSelectElement;

@@ -1,0 +1,5 @@
+.example-container form section mat-form-field{
+  margin: 10px;
+  width: 40% ;
+  align-items: center;
+}

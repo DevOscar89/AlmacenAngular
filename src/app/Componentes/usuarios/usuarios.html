@@ -1,3 +1,88 @@
+ 
+ 
+<form class="container" [formGroup]="usuarioFormulario" (ngSubmit)="onSubmit()">
+    <div class="row">
+         <div class="col-md-12 mb-3">
+             <h3 class="form-label text-center">Registro de Usuarios</h3>
+        </div>
+        
+        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-label>Primer Nombre:</mat-label>
+        <input matInput #input  formControlName="PrimerNombre"/> 
+        <mat-icon matSuffix>create</mat-icon>    
+    </mat-form-field>  
+
+        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Segundo Nombre:</mat-label>
+        <input matInput  formControlName="SegundoNombre">
+    <mat-icon matSuffix>create</mat-icon>     
+    </mat-form-field>
+
+        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-label>Primer Apellido:</mat-label>
+        <input matInput #input  formControlName="PrimerApellido"/>    
+    <mat-icon matSuffix>create</mat-icon>     
+    </mat-form-field>  
+
+        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Segundo Apellido:</mat-label>
+        <input matInput  formControlName="SegundoApellido">
+        <mat-icon matSuffix>create</mat-icon>     
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-label>Usuario:</mat-label>
+        <input matInput #input formControlName="Usuario"/>    
+        <mat-icon matSuffix>person_outline</mat-icon>     
+        </mat-form-field>  
+
+        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Contraseña:</mat-label>
+        <input matInput type="password"  formControlName="Password">
+        <mat-icon matSuffix>password</mat-icon>   
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-label>Correo:</mat-label>
+        <input matInput #input type="email"  formControlName="Correo"/>    
+        <mat-icon matSuffix>mail_outline</mat-icon>     
+        </mat-form-field>  
+
+        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Celular:</mat-label>
+        <input matInput type="tel" formControlName="Celular">
+        <mat-icon matSuffix>phone</mat-icon>      
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Roles</mat-label>
+        <mat-select appearance="outline" formControlName="Rol">
+        <mat-option value="">Seleccione un rol</mat-option>
+           @for(roles of Roles(); track roles.Id)
+           {
+            <mat-option [value]="roles.Codigo">{{ roles.Rol }}</mat-option>           
+           }     
+        </mat-select>
+        </mat-form-field>
+        
+    </div>    
+    <section>
+      <div class="example-button-row">
+        <button matButton="filled"  type="submit"><mat-icon iconPositionEnd>check</mat-icon>Registrar</button>
+        <button matButton="filled" type="button" (click)="onCancel()"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
+      </div>
+    </section>
+</form>
+
+
+<!-- </form>
+   <button class="btn btn-primary btn-sm" type="submit">Registrar</button>
+       <button class="btn btn-secondary btn-sm" type="button" (click)="onCancel()" >Cancelar</button> -->
+
+
+
+
+<!-- 
 <form class="container" [formGroup]="usuarioFormulario" (ngSubmit)="onSubmit()">
     <div class="row">
         <input type="hidden" formControlName="Id" value="0">
@@ -125,4 +210,4 @@
        <button class="btn btn-primary btn-sm" type="submit">Registrar</button>
        <button class="btn btn-secondary btn-sm" type="button" (click)="onCancel()" >Cancelar</button>
     </div>    
-</form>
+</form> -->

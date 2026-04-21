@@ -1,1 +1,38 @@
-<p>clientes-consulta works!</p>
+<div class="container">
+    <div class="col-md-12 mb-3">
+        <h3 class="form-label text-center">Consulta Clientes</h3>
+     </div>  
+    <div class="col-md-12">
+        <label class="form-label">Documento :</label>
+        <input 
+            type="text"
+            class="form-control"
+            name="Documento"
+            id="Documento"
+            formControlName ='Documento'
+            />
+    </div>
+    <div class="col-md-12">
+       <button type="button" class="btn btn-primary mt-2">Buscar</button>
+    </div>
+     <div class="col-md-12 mt-3">  
+         @defer (on immediate) {            
+                <ag-grid-angular
+                 style="width: 100%; height:800px;"
+                 [theme]="theme"
+                 [columnDefs]="columnDefs"
+                 [rowData]="rowData()"
+                 [pagination]="true"
+                 [rowSelection]="rowSelection"                         
+                 [paginationPageSizeSelector]="[5,10, 20, 50]"   
+                  (selectionChanged)="onSeelectionChanged($event)"                    
+                  >
+                </ag-grid-angular>
+         }  @if (ClienteSeleccionado()) {
+               <div class="alert alert-warning">     
+                    <label>Nombre : <strong>{{ ClienteSeleccionado()?.PrimerNombre }} </strong></label>
+                    <label>Apellido :<strong>{{ ClienteSeleccionado()?.PrimerApellido }} </strong></label>             
+               </div>
+        }
+     </div>
+</div>   

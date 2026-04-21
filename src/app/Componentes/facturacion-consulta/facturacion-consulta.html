@@ -1,34 +1,70 @@
 <div class="container">
     <div class="row">
-          <div class="col-md-12 mb-3">
+        <div class="col-md-12 mb-3">
             <h3 class="form-label text-center">Consulta Facturas</h3>
-         </div>  
-        <div class="col-md-12">
+        </div>  
+        <div class="col-md-6">
             <label class="form-label">Documento :</label>
             <input 
                 type="text"
-                class="form-control form-control-sm"
+                class="form-control"
                 name="Documento"
                 id="Documento"
                 />
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label class="form-label">Numero factura :</label>
             <input 
                 type="text"
-                class="form-control form-control-sm"
+                class="form-control"
+                name="NoFactura"
+                id="NoFactura"
+                />
+        </div>        
+        <div class="col-md-6">
+            <label class="form-label">Fecha Inicio :</label>
+            <input 
+                type="date"
+                class="form-control"
                 name="NoFactura"
                 id="NoFactura"
                 />
         </div>
-        <div class="col-md-12">
-            <label class="form-label">Numero factura :</label>
+        <div class="col-md-6">
+            <label class="form-label">Fecha Final :</label>
             <input 
-                type="text"
-                class="form-control form-control-sm"
+                type="date"
+                class="form-control"
                 name="NoFactura"
                 id="NoFactura"
                 />
+        </div>
+        <div class="col-md-6">
+            <input 
+               type="checkbox"
+               class="form-check-input"
+            />
+            <label class="form-check-label">Fechas</label>
+        </div>
+        <div class="col-md-12">
+            @defer (on immediate) {
+                <ag-grid-angular
+                style="width: 100%; height: 400px;"
+                [theme]="theme"
+                [columnDefs]="columnDefs"  
+                [rowData]="rowData()"            
+                [pagination]="true"            
+                [rowSelection]="rowSelection"                      
+                [paginationPageSizeSelector]="[5,10, 20, 50]"
+                 (selectionChanged)="onSelectionChanged($event)" 
+                >                
+             </ag-grid-angular>
+            } @if(FacturaSeleccionado()){
+                <div class="alert alert-warning">
+                    <label for="">Facturas  :<strong>{{FacturaSeleccionado()?.NoFactura}}</strong></label>
+                </div>
+            }
+            
         </div>
     </div>
 </div>

@@ -11,4 +11,6 @@ export const environment = {
   Ocupacion: '/Ocupacion',
   Sexo: '/Sexo',
   Roles: '/Roles',
+  Facturacion: '/Facturacion',
+  Factura:'/Factura',
 };

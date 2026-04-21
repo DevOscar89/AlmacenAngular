@@ -36,8 +36,7 @@ export class Clientes {
   cargando = signal<boolean>(true);  
   error = signal<string | null>(null);
 
-  constructor(){
-    this.cargarSexo();  
+  constructor(){  
 	this.cargarTipoDocumento();
 	this.cargarPaises();
 	this.cargarPaisesResidencia();
@@ -227,21 +226,7 @@ changePaisNacimiento(event: Event): void {
 		this.cargando.set(false);
 	  }
 	});
-  }
-
-  cargarSexo() : void {
-    this.FacturacionService.obtenerSexo().subscribe({
-      next: (data) => {
-        this.sexo.set(data);
-        this.cargando.set(false);
-      },
-      error: (err) => {
-        console.error('Error al cargar los datos',err);
-        this.error.set('Error al cargar los datos');
-        this.cargando.set(false);
-      }
-    });
-  }
+  } 
 
   cargarTipoDocumento() : void {
 	this.Comunesservice.obtenerTipoDocumento().subscribe({
