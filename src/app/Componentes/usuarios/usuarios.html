@@ -1,57 +1,88 @@
  
  
 <form class="container" [formGroup]="usuarioFormulario" (ngSubmit)="onSubmit()">
-    <div class="row">
-         <div class="col-md-12 mb-3">
-             <h3 class="form-label text-center">Registro de Usuarios</h3>
+      <div class="row  g-3 needs-validation">
+         <div class="col-md-12 text-center mb-3">
+             <h3 class="fs-3 fw-bold">Registro de Usuarios</h3>
         </div>
         
+       
+         <input type="hidden" formControlName="Id" value="0">
         <mat-form-field  appearance="outline" class="col-md-6">
         <mat-label>Primer Nombre:</mat-label>
-        <input matInput #input  formControlName="PrimerNombre"/> 
+        <input matInput #input  formControlName="PrimerNombre" [errorStateMatcher]="matcher"/> 
+          @if(usuarioFormulario.get('PrimerNombre')?.hasError('required')){
+            <mat-error>El Primer Nombre es <strong>obligatorio</strong>.</mat-error>
+        } 
         <mat-icon matSuffix>create</mat-icon>    
-    </mat-form-field>  
+        </mat-form-field>  
 
         <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Segundo Nombre:</mat-label>
         <input matInput  formControlName="SegundoNombre">
-    <mat-icon matSuffix>create</mat-icon>     
-    </mat-form-field>
+        @if(usuarioFormulario.get('SegundoNombre')?.hasError('required')){
+            <mat-error>El Segundo Nombre es <strong>obligatorio</strong>.</mat-error>
+        } 
+        <mat-icon matSuffix>create</mat-icon>     
+        </mat-form-field>
 
         <mat-form-field  appearance="outline" class="col-md-6">
         <mat-label>Primer Apellido:</mat-label>
-        <input matInput #input  formControlName="PrimerApellido"/>    
-    <mat-icon matSuffix>create</mat-icon>     
-    </mat-form-field>  
+        <input matInput #input  formControlName="PrimerApellido"/> 
+          @if(usuarioFormulario.get('PrimerApellido')?.hasError('required')){
+            <mat-error>El Primer Apellido es <strong>obligatorio</strong>.</mat-error>
+        }    
+        <mat-icon matSuffix>create</mat-icon>     
+        </mat-form-field>  
 
         <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Segundo Apellido:</mat-label>
         <input matInput  formControlName="SegundoApellido">
+        @if(usuarioFormulario.get('SegundoApellido')?.hasError('required')){
+            <mat-error>El Segundo Apellido es <strong>obligatorio</strong>.</mat-error>
+        }
         <mat-icon matSuffix>create</mat-icon>     
         </mat-form-field>
 
         <mat-form-field  appearance="outline" class="col-md-6">
         <mat-label>Usuario:</mat-label>
         <input matInput #input formControlName="Usuario"/>    
+        @if(usuarioFormulario.get('Usuario')?.hasError('required')){
+            <mat-error>El Usuario es <strong>obligatorio</strong>.</mat-error>
+        }
         <mat-icon matSuffix>person_outline</mat-icon>     
         </mat-form-field>  
 
         <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Contraseña:</mat-label>
-        <input matInput type="password"  formControlName="Password">
-        <mat-icon matSuffix>password</mat-icon>   
+        <input matInput type="{{hide ? 'password' : 'text'}}"  formControlName="Password" >
+        @if(usuarioFormulario.get('Password')?.hasError('required')){
+            <mat-error>La Contraseña es <strong>obligatoria</strong>.</mat-error>
+        }
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>   
         </mat-form-field>
 
         <mat-form-field  appearance="outline" class="col-md-6">
         <mat-label>Correo:</mat-label>
-        <input matInput #input type="email"  formControlName="Correo"/>    
-        <mat-icon matSuffix>mail_outline</mat-icon>     
+        <input matInput type="email"  formControlName="Correo" [errorStateMatcher]="matcher"/>               
+        @if(usuarioFormulario.get('Correo')?.hasError('email') && !usuarioFormulario.get('Correo')?.hasError('required')){
+            <mat-error>El correo no es válido.</mat-error>
+        }          
+         @if(usuarioFormulario.get('Correo')?.hasError('required')){
+            <mat-error>El correo es <strong>obligatorio</strong>.</mat-error>
+        } 
+         <mat-icon matSuffix>alternate_email</mat-icon>            
         </mat-form-field>  
 
         <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Celular:</mat-label>
-        <input matInput type="tel" formControlName="Celular">
-        <mat-icon matSuffix>phone</mat-icon>      
+        <input matInput type="tel" formControlName="Celular" (keypress)="soloNumeros($event)">
+       
+         @if(usuarioFormulario.get('Celular')?.hasError('pattern') && !usuarioFormulario.get('Celular')?.hasError('required')){
+            <mat-error>El número de celular no es válido.</mat-error>
+        } 
+         
+        <mat-icon matSuffix>phone_iphone</mat-icon>      
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-md-6">
@@ -63,15 +94,19 @@
             <mat-option [value]="roles.Codigo">{{ roles.Rol }}</mat-option>           
            }     
         </mat-select>
-        </mat-form-field>
+            @if(usuarioFormulario.get('Rol')?.hasError('required')){
+                <mat-error>El rol es <strong>obligatorio</strong>.</mat-error>
+            }
+        </mat-form-field>       
         
-    </div>    
+    
     <section>
       <div class="example-button-row">
-        <button matButton="filled"  type="submit"><mat-icon iconPositionEnd>check</mat-icon>Registrar</button>
-        <button matButton="filled" type="button" (click)="onCancel()"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
+        <button matButton="tonal" class="m-1" type="submit"><mat-icon iconPositionEnd>check</mat-icon>Registrar</button>
+        <button matButton="tonal" class="m-1" type="button" (click)="onCancel()"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
       </div>
     </section>
+    </div>
 </form>
 
 

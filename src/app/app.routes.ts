@@ -7,6 +7,7 @@ import { Login } from './Componentes/Login/login/login';
 import { UsuarioConsulta } from './Componentes/usuario-consulta/usuario-consulta';
 import { ClientesConsulta } from './Componentes/clientes-consulta/clientes-consulta';
 import { FacturacionConsulta } from './Componentes/facturacion-consulta/facturacion-consulta';
+import { Productos } from './Componentes/productos/productos';
 
 export const routes: Routes = [
     {   path: '', component: Login },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     {   path: 'UsuarioConsulta', component: UsuarioConsulta },   
     {   path:'ClientesConsulta', component: ClientesConsulta},
     {   path:'FacturacionConsulta', component: FacturacionConsulta},
+    {   path:'Productos', component: Productos},
 ];

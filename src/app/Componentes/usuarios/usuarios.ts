@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators,NgForm ,FormGroupDirective,AbstractControl} from '@angular/forms';
 import { Usuarioservice } from '../../Service/Usuario/usuarioservice';
 import { CommonModule } from '@angular/common'; 
 import { Rol } from '../../Models/rolInterface';
@@ -15,25 +15,35 @@ import { FormsModule } from '@angular/forms';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
+import {ErrorStateMatcher} from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: AbstractControl | null, // Cambiado de FormControl a AbstractControl
+    form: FormGroupDirective | NgForm | null // Cambiado de FormGroup a FormGroupDirective
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-usuarios',
-  imports: [ReactiveFormsModule,
-    CommonModule, MatFormFieldModule,
-    MatInputModule, MatSelectModule, MatCardModule,
-    MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-    FormsModule,
-    ReactiveFormsModule,
+  imports: [
+    CommonModule, 
+    MatSelectModule, 
+    MatCardModule,      
+    FormsModule,    
     MatCheckboxModule,
     MatRadioModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
     MatIconModule,
     MatButton,
-
-    MatDividerModule, MatFabButton],
+    MatDividerModule, 
+    MatFormFieldModule,
+    MatInputModule, 
+    ReactiveFormsModule
+    ],
   standalone: true,
   templateUrl: './usuarios.html',
   styleUrl: './usuarios.css',
@@ -48,13 +58,16 @@ export class Usuarios {
      this.CargarRol();
    }
 
+
+
   usuarioFormulario = new FormGroup({
     Id: new FormControl(0),
 	  Usuario: new FormControl('',[
       Validators.required
     ]), 
 	  Password: new FormControl('',[
-      Validators.required      
+      Validators.required,
+      Validators.min(3)      
     ]), 
 	  PrimerNombre: new FormControl('',[
       Validators.required
@@ -77,6 +90,9 @@ export class Usuarios {
 	  FechaRegistro: new FormControl(new Date().toISOString().substring(0, 10)), 
   });
 
+    matcher = new MyErrorStateMatcher();
+
+
   onSubmit()
   {
     console.log(this.usuarioFormulario.value);
@@ -87,6 +103,13 @@ export class Usuarios {
         Swal.fire('Revisar!','Por favor, diligencia el formulario','warning');
       }
   }
+
+  soloNumeros(event: KeyboardEvent) {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    event.preventDefault(); // Impide escribir si no es un número
+  }
+}
 
   onCancel(){
     this.usuarioFormulario.reset();
@@ -102,4 +125,6 @@ export class Usuarios {
       }
     });
   }
+hide = true;
+  get passwordInput() { return this.usuarioFormulario.get('Password'); }  
 }
