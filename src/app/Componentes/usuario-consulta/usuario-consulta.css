@@ -1,0 +1,39 @@
+.cliente-card {
+  max-width: 95%;
+  margin: 2rem auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.row-flex {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.row-flex mat-form-field {
+  flex: 1;
+  min-width: 250px; /* Asegura que en móvil se apilen */
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+mat-card-title {
+  color: #3f51b5;
+  font-weight: bold;
+}

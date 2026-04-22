@@ -1,68 +1,76 @@
- 
- 
-<form class="container" [formGroup]="usuarioFormulario" (ngSubmit)="onSubmit()">
-      <div class="row  g-3 needs-validation">
-         <div class="col-md-12 text-center mb-3">
-             <h3 class="fs-3 fw-bold">Registro de Usuarios</h3>
-        </div>
+ <form class="formulario-container" [formGroup]="usuarioFormulario" (ngSubmit)="onSubmit()">
+        <header class="header-formulario">
+            <h3>Registro de Usuarios</h3>
+        </header>
         
-       
-         <input type="hidden" formControlName="Id" value="0">
-        <mat-form-field  appearance="outline" class="col-md-6">
+        <div class="grid-layout">
+            <input type="hidden" formControlName="Id" value="0">
+
+            
+         
+        <mat-form-field  appearance="outline" >
         <mat-label>Primer Nombre:</mat-label>
         <input matInput #input  formControlName="PrimerNombre" [errorStateMatcher]="matcher"/> 
+        <mat-icon matSuffix>person_outline</mat-icon>  
           @if(usuarioFormulario.get('PrimerNombre')?.hasError('required')){
             <mat-error>El Primer Nombre es <strong>obligatorio</strong>.</mat-error>
-        } 
-        <mat-icon matSuffix>create</mat-icon>    
+        }           
         </mat-form-field>  
 
-        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-form-field appearance="outline" >
         <mat-label>Segundo Nombre:</mat-label>
         <input matInput  formControlName="SegundoNombre">
         @if(usuarioFormulario.get('SegundoNombre')?.hasError('required')){
             <mat-error>El Segundo Nombre es <strong>obligatorio</strong>.</mat-error>
         } 
-        <mat-icon matSuffix>create</mat-icon>     
+        <mat-icon matSuffix>person_outline</mat-icon>     
         </mat-form-field>
 
-        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-form-field  appearance="outline" >
         <mat-label>Primer Apellido:</mat-label>
         <input matInput #input  formControlName="PrimerApellido"/> 
           @if(usuarioFormulario.get('PrimerApellido')?.hasError('required')){
             <mat-error>El Primer Apellido es <strong>obligatorio</strong>.</mat-error>
         }    
-        <mat-icon matSuffix>create</mat-icon>     
+        <mat-icon matSuffix>person_outline</mat-icon>     
         </mat-form-field>  
 
-        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-form-field appearance="outline" >
         <mat-label>Segundo Apellido:</mat-label>
         <input matInput  formControlName="SegundoApellido">
         @if(usuarioFormulario.get('SegundoApellido')?.hasError('required')){
             <mat-error>El Segundo Apellido es <strong>obligatorio</strong>.</mat-error>
         }
-        <mat-icon matSuffix>create</mat-icon>     
+        <mat-icon matSuffix>person_outline</mat-icon>     
         </mat-form-field>
 
-        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-form-field  appearance="outline" >
         <mat-label>Usuario:</mat-label>
         <input matInput #input formControlName="Usuario"/>    
         @if(usuarioFormulario.get('Usuario')?.hasError('required')){
             <mat-error>El Usuario es <strong>obligatorio</strong>.</mat-error>
         }
-        <mat-icon matSuffix>person_outline</mat-icon>     
+        <mat-icon matSuffix>account_circle</mat-icon>     
         </mat-form-field>  
 
-        <mat-form-field appearance="outline" class="col-md-6">
-        <mat-label>Contraseña:</mat-label>
-        <input matInput type="{{hide ? 'password' : 'text'}}"  formControlName="Password" >
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Contraseña:</mat-label> 
+        <input matInput [type]="hide() ? 'password' : 'text'" formControlName="Password">
+        <mat-icon matSuffix (click)="hide.set(!hide())">
+            {{ hide() ? 'visibility_off' : 'visibility' }}
+       </mat-icon>
         @if(usuarioFormulario.get('Password')?.hasError('required')){
-            <mat-error>La Contraseña es <strong>obligatoria</strong>.</mat-error>
+             <mat-error>La Contraseña es <strong>obligatoria</strong>.</mat-error>
+        } 
+         @if (usuarioFormulario.get('Password')?.hasError('minlength')) {
+             <mat-error>La Contraseña debe tener al menos 6 caracteres.</mat-error>
         }
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>   
+         @if (usuarioFormulario.get('Password')?.hasError('pattern')) {
+             <mat-error>La Contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.</mat-error>  
+        }
         </mat-form-field>
 
-        <mat-form-field  appearance="outline" class="col-md-6">
+        <mat-form-field  appearance="outline" >
         <mat-label>Correo:</mat-label>
         <input matInput type="email"  formControlName="Correo" [errorStateMatcher]="matcher"/>               
         @if(usuarioFormulario.get('Correo')?.hasError('email') && !usuarioFormulario.get('Correo')?.hasError('required')){
@@ -74,18 +82,23 @@
          <mat-icon matSuffix>alternate_email</mat-icon>            
         </mat-form-field>  
 
-        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-form-field appearance="outline" >
         <mat-label>Celular:</mat-label>
         <input matInput type="tel" formControlName="Celular" (keypress)="soloNumeros($event)">
        
-         @if(usuarioFormulario.get('Celular')?.hasError('pattern') && !usuarioFormulario.get('Celular')?.hasError('required')){
+         @if(usuarioFormulario.get('Celular')?.hasError('pattern'))
+         {
             <mat-error>El número de celular no es válido.</mat-error>
-        } 
+        }
+        
+        @if(usuarioFormulario.get('Celular')?.hasError('minlength') || usuarioFormulario.get('Celular')?.hasError('maxlength')){
+            <mat-error>El número de celular no es válido.</mat-error>
+        }
          
         <mat-icon matSuffix>phone_iphone</mat-icon>      
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-md-6">
+        <mat-form-field appearance="outline" >
         <mat-label>Roles</mat-label>
         <mat-select appearance="outline" formControlName="Rol">
         <mat-option value="">Seleccione un rol</mat-option>
@@ -97,16 +110,13 @@
             @if(usuarioFormulario.get('Rol')?.hasError('required')){
                 <mat-error>El rol es <strong>obligatorio</strong>.</mat-error>
             }
-        </mat-form-field>       
-        
-    
-    <section>
-      <div class="example-button-row">
-        <button matButton="tonal" class="m-1" type="submit"><mat-icon iconPositionEnd>check</mat-icon>Registrar</button>
-        <button matButton="tonal" class="m-1" type="button" (click)="onCancel()"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
-      </div>
-    </section>
+        </mat-form-field>  
     </div>
+    <footer class="acciones-formulario">
+        <button matButton="tonal" class="m-1" type="submit"><mat-icon >save</mat-icon>Guardar</button>
+        <button matButton="tonal" class="m-1" type="button" (click)="onCancel()"><mat-icon >cancel</mat-icon> Cancelar</button>
+    
+    </footer>  
 </form>
 
 

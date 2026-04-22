@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators,NgForm ,FormGroupDirective,AbstractControl} from '@angular/forms';
 import { Usuarioservice } from '../../Service/Usuario/usuarioservice';
 import { CommonModule } from '@angular/common'; 
@@ -12,10 +12,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { MatButton, MatFabButton } from '@angular/material/button';
-import {MatTooltip} from '@angular/material/tooltip';
+import { MatButton } from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Subject } from 'rxjs'; // Para limpieza de memoria
+import { sign } from 'crypto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -50,15 +51,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class Usuarios {
-  private Usuarioservice = inject(Usuarioservice);
+export class Usuarios implements OnInit, OnDestroy { //Implementamos los hooks
+  private destroy$ = new Subject<void>(); // Notificador para cerrar suscripciones
+  //Definimos las señales y servicios injectados....
+  private usuarioservice = inject(Usuarioservice);
    Roles = signal<Rol[]>([]);
-
-   constructor(){
-     this.CargarRol();
-   }
-
-
+   hide = signal(true);
 
   usuarioFormulario = new FormGroup({
     Id: new FormControl(0),
@@ -67,7 +65,7 @@ export class Usuarios {
     ]), 
 	  Password: new FormControl('',[
       Validators.required,
-      Validators.min(3)      
+      Validators.minLength(4)      
     ]), 
 	  PrimerNombre: new FormControl('',[
       Validators.required
@@ -83,40 +81,25 @@ export class Usuarios {
       Validators.required,
       Validators.email
     ]), 
-	  Celular: new FormControl(''), 
+	  Celular: new FormControl('',[
+      Validators.pattern('^[0-9]+$'),// Ajusta la regex según tu país
+      Validators.minLength(10), // Ajusta el mínimo de dígitos según tu país
+      Validators.maxLength(10)  // Ajusta el máximo de dígitos según tu país
+    ]), 
 	  Rol: new FormControl('',[
       Validators.required
     ]), 
 	  FechaRegistro: new FormControl(new Date().toISOString().substring(0, 10)), 
   });
 
-    matcher = new MyErrorStateMatcher();
-
-
-  onSubmit()
-  {
-    console.log(this.usuarioFormulario.value);
-    if(this.usuarioFormulario.invalid == false)
-      {         
-          this.Usuarioservice.GuardarUsuario(this.usuarioFormulario.value);   
-      } else {
-        Swal.fire('Revisar!','Por favor, diligencia el formulario','warning');
-      }
-  }
-
-  soloNumeros(event: KeyboardEvent) {
-  const charCode = (event.which) ? event.which : event.keyCode;
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-    event.preventDefault(); // Impide escribir si no es un número
-  }
-}
-
-  onCancel(){
-    this.usuarioFormulario.reset();
+  matcher = new MyErrorStateMatcher();
+  
+  ngOnInit(): void{
+    this.CargarRol();
   }
 
   CargarRol(): void {
-    this.Usuarioservice.ConsultarRoles().subscribe({
+    this.usuarioservice.ConsultarRoles().subscribe({
       next:(data) =>{
          this.Roles.set(data);
       },
@@ -125,6 +108,41 @@ export class Usuarios {
       }
     });
   }
-hide = true;
-  get passwordInput() { return this.usuarioFormulario.get('Password'); }  
+
+  onSubmit()
+  {
+    console.log(this.usuarioFormulario.value);
+    if(this.usuarioFormulario.invalid == false)
+      {         
+          this.usuarioservice.GuardarUsuario(this.usuarioFormulario.getRawValue());   
+      } else {
+        Swal.fire('Revisar!','Por favor, diligencia el formulario','warning');
+      }
+  }
+
+  soloNumeros(event: KeyboardEvent) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault(); // Impide escribir si no es un número
+    }
+  }
+
+  onCancel(){
+    this.usuarioFormulario.reset();
+  }
+   
+   // Getter para facilitar el acceso desde el HTML
+  get celular() {
+    return this.usuarioFormulario.get('Celular');
+  }
+
+  get passwordInput() { 
+    return this.usuarioFormulario.get('Password'); 
+  }
+  
+  ngOnDestroy(): void {
+    this.destroy$.next(); // Activa la detención de todas las suscripciones
+    this.destroy$.complete(); // Cierra el flujo del Subject
+    console.log('Componente Clientes destruido y suscripciones cerradas.');
+  }
 }

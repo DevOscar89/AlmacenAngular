@@ -4,3 +4,8 @@
 .compact-from{
     @include mat.form-field-density(-5);
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}

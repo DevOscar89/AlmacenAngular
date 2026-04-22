@@ -8,12 +8,17 @@ import {   ColDef,   ModuleRegistry,    AllCommunityModule ,
 import { cliente } from '../../Models/clienteInterface';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Clientesservice } from '../../Service/Clientes/clientesservice';
+import { MatCard ,MatCardHeader,MatCardTitle,MatCardContent,MatCardSubtitle} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-clientes-consulta',
-  imports: [AgGridAngular],
+  imports: [AgGridAngular,MatCard ,MatCardHeader,MatCardTitle,MatCardContent,
+    MatCardSubtitle,MatInputModule,MatButtonModule,MatIconModule],
   standalone: true,
   templateUrl: './clientes-consulta.html',
   styleUrl: './clientes-consulta.css',

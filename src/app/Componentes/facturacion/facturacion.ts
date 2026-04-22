@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import {form, FormField} from '@angular/forms/signals';
 import { HttpClient } from '@angular/common/http';
 import { Facturacionservice } from '../../Service/Facturacion/facturacionservice'; 
@@ -6,17 +6,38 @@ import { Comunesservice } from '../../Service/Comunes/comunesservice';
 import { Sexo } from '../../Models/SexoInterface';
 import { Departamentos } from '../../Models/DepartamentosInterface';
 import { Municipios } from '../../Models/MunicipiosInterface';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators,NgForm ,FormGroupDirective,AbstractControl} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+import { Subject } from 'rxjs';
+import { MatTooltip } from "@angular/material/tooltip"; // Para limpieza de memoria
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: AbstractControl | null, // Cambiado de FormControl a AbstractControl
+    form: FormGroupDirective | NgForm | null // Cambiado de FormGroup a FormGroupDirective
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-facturacion',
-  imports: [],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatIconModule, MatTooltip],
   standalone: true,
   templateUrl: './facturacion.html',
   styleUrl: './facturacion.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class Facturacion {
+export class Facturacion implements OnInit, OnDestroy{
+  private destroy$ = new Subject<void>(); // Notificador para cerrar suscripciones
   private FacturacionService = inject(Facturacionservice);
   private ComunesService = inject(Comunesservice);
   departamento = signal<Departamentos[]>([]);
@@ -25,9 +46,28 @@ export class Facturacion {
   cargando = signal<boolean>(true);
   error = signal<string | null>(null);
 
-  constructor(){
+
+facturacionFormulario = new FormGroup({
+  Documento: new FormControl(''),
+  Nombre: new FormControl(''),
+  Departamento: new FormControl(''),
+  Ciudad: new FormControl(''),
+  Nofactura: new FormControl(''), 
+  Descripcion: new FormControl(''),
+  Cantidad: new FormControl(''),
+  Valor: new FormControl(''),
+  Total: new FormControl(''),
+});
+
+  matcher = new MyErrorStateMatcher();
+
+  ngOnInit(): void{
     this.cargarDepartamentos(); 
-  } 
+  }
+  
+  onSubmit(){
+    console.log(this.facturacionFormulario.value);
+  }
 
   ChangeDepartamento(event: any) : void {
     const selectElement = event.target as HTMLSelectElement;
@@ -64,5 +104,11 @@ export class Facturacion {
         this.cargando.set(false);
       }
     });
+  }
+
+   ngOnDestroy(): void {
+    this.destroy$.next(); // Activa la detención de todas las suscripciones
+    this.destroy$.complete(); // Cierra el flujo del Subject
+    console.log('Componente Clientes destruido y suscripciones cerradas.');
   }
 }

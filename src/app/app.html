@@ -1,1 +1,103 @@
-<router-outlet />
+<mat-sidenav-container class="menu-container">
+  <!-- 1. Referencia #sidenav y quitamos 'opened' si queremos que empiece cerrado o lo dejamos si empieza abierto -->
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item  routerLinkActive="active-link">
+        <mat-icon matListItemIcon>home</mat-icon>        
+        <span matListItemTitle>Inicio</span>
+      </a>    
+   
+        <mat-expansion-panel class="menu-expansion" [class.active-parent]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>person</mat-icon>
+        <span class="menu-label">Usuarios</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list class="sub-menu">
+      <a mat-list-item routerLink="/Usuarios" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>person_add</mat-icon>
+        <span matListItemTitle>Crear Nuevo</span>
+      </a>
+      <a mat-list-item routerLink="/UsuarioConsulta" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>person_search</mat-icon>
+        <span matListItemTitle>Consultar</span>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+       <!-- Opción con SUBOPCIONES -->
+  <mat-expansion-panel class="menu-expansion" [class.active-parent]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>receipt</mat-icon>
+        <span class="menu-label">Facturación</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list class="sub-menu">
+      <a mat-list-item routerLink="/Facturacion" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>note_add</mat-icon>
+        <span matListItemTitle>Crear Nuevo</span>
+      </a>
+      <a mat-list-item routerLink="/FacturacionConsulta" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>search</mat-icon>
+        <span matListItemTitle>Consultar</span>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+
+    <mat-expansion-panel class="menu-expansion" [class.active-parent]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>account_circle</mat-icon>
+        <span class="menu-label">Clientes</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list class="sub-menu">
+      <a mat-list-item routerLink="/Cliente" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>person_add</mat-icon>
+        <span matListItemTitle>Crear Nuevo</span>
+      </a>
+      <a mat-list-item routerLink="/ClientesConsulta" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>person_search</mat-icon>
+        <span matListItemTitle>Consultar</span>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+
+   <mat-expansion-panel class="menu-expansion" [class.active-parent]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>inventory</mat-icon>
+        <span class="menu-label">Productos</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list class="sub-menu">
+      <a mat-list-item routerLink="/Productos" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>add</mat-icon>
+        <span matListItemTitle>Crear productos</span>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+  
+    </mat-nav-list>
+    
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- 2. Botón para alternar (toggle) el menú -->
+    <div class="toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon style="color:rgb(0, 0, 0)">menu</mat-icon>
+      </button>
+      <span style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-size:large;font-weight: 400;" >Almacen</span>
+    </div>
+
+    <div class="main-padding">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

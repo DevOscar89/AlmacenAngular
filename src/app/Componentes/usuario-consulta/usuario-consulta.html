@@ -1,28 +1,52 @@
-<div class="container">
-    <div class="row">
-         <div class="col-md-12 mb-3">
-            <h3 class="form-label text-center">Consulta Usuarios</h3>
-         </div>  
-         <div class="row">
-<div class="form-group col-md-6">
-            <label class="form-label form-label-sm">Usuario :</label>
-            <input  type="text" 
-                    class="form-control form-control-sm"
-                    name="Usuario" 
-                    id="Usuario"/>
-         </div> 
-         <div class="form-group col-md-6">
-           <label class="form-label form-label-sm">Rol</label>
-           <input type="text" class="form-control form-control-sm" Id="Rol">
-         </div>   
-         </div>
-           
-         
-         <div class="col-md-12">
-              <button type="button" class="btn btn-primary mt-2">Buscar</button>
-         </div>
-         <div class="col-md-12 mt-3">
-               @defer (on immediate) {
+<mat-card class="cliente-card">
+     <mat-card-header>
+          <mat-card-title>Consulta de Usuarios</mat-card-title>
+     </mat-card-header>
+     <mat-card-content>
+          <form  class="form-grid">
+               <div class="row-flex">
+                 <mat-form-field appearance="outline">
+                 <mat-label>Usuario  :</mat-label>
+                 <input matInput>
+                 <mat-icon matSuffix>person_search</mat-icon>
+                 <mat-hint>Usuario registrado a consultar</mat-hint>
+                 </mat-form-field>
+
+                 <mat-form-field appearance="outline" color="accent">
+                 <mat-label>Rol  :</mat-label>
+                 <input matInput>
+                 <mat-icon matSuffix>manage_search</mat-icon>
+                 <mat-hint>Rol que tiene el usuario</mat-hint>
+                 </mat-form-field>
+               </div>
+               
+               <div class="row-flex">  
+                 <mat-form-field appearance="outline">
+                 <mat-label>Fecha inicial</mat-label>
+                 <input matInput [matDatepicker]="picker">
+                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                 <mat-datepicker #picker></mat-datepicker>
+                 <mat-hint>Fecha de inicio</mat-hint>
+                 </mat-form-field>
+
+                 <mat-form-field appearance="outline">
+                 <mat-label>Fecha final</mat-label>
+                 <input matInput [matDatepicker]="picker2">
+                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                 <mat-datepicker #picker2></mat-datepicker>
+                 <mat-hint>Fecha final</mat-hint>
+                 </mat-form-field>
+              </div>     
+               <div class="actions">       
+                  <button matButton="tonal"  type="submit"><mat-icon>search</mat-icon>Consultar</button>
+                   <button matButton="tonal" type="button"><mat-icon>cleaning_services</mat-icon> Limpiar</button>
+                   <button matButton="tonal" type="button"><mat-icon>download</mat-icon> Descargar</button>
+               </div>
+          </form>
+             </mat-card-content>  
+      </mat-card>
+      <mat-card class="cliente-card">
+           @defer (on immediate) {
                     <ag-grid-angular
                          style="width: 100%; height: 400px;"
                          [theme]="theme"
@@ -36,15 +60,13 @@
                     </ag-grid-angular>
                } @placeholder {
                     }
-         </div>
-         <div class="col-md-12">
-             @if (usuarioSeleccionado()) {
+   
+           @if (usuarioSeleccionado()) {
                <div class="alert alert-warning">
                     <label>Usuario : <strong>{{ usuarioSeleccionado()?.Usuario }} </strong> </label>
                     <label>Nombre : <strong>{{ usuarioSeleccionado()?.PrimerNombre }} </strong></label>
                     <label>Apellido :<strong>{{ usuarioSeleccionado()?.PrimerApellido }} </strong></label>             
                </div>
                }
-         </div>
-    </div>
-</div> 
+     
+</mat-card>

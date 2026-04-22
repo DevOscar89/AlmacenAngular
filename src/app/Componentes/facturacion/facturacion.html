@@ -1,109 +1,80 @@
-<form class="container">
-  <div class="row">
-    <div class="col-md-12 mb-3">
-      <h3 class="form-label text-center">Factura de venta</h3>
-    </div> 
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label for="Documento">Numero Documento :</label>
-            <input 
-              type="text"
-              class="form-control form-control-sm"
-              id="Documento"
-              name="Documento"
-            /> 
-        </div>  
-        <div class="form-group col-md-6">
-            <label for="Nombre">Nombre :</label>
-            <input 
-              type="text"
-              class="form-control form-control-sm"
-              id="Nombre"
-              name="Nombre"
-            /> 
-        </div>  
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label for="Departamento">Departamento :</label>
-            <select 
-              type="text"
-              class="form-select form-select-sm"
-              id="Departamento"
-              name="Departamento"
-              (change)="ChangeDepartamento($event)"
-            >
-              <option value="">Seleccione un departamento</option>
-              @for(departamento of departamento(); track departamento.Id){
-                <option [value]="departamento.Id">{{ departamento.Nombre }}</option>
-              }
-            </select>
 
-        </div>  
-        <div class="form-group col-md-6">
-            <label for="Ciudad">Ciudad :</label>
-            <select 
-              type="text"
-              class="form-select form-select-sm"
-              id="Ciudad"
-              name="Ciudad"
-            >
-              <option value="">Seleccione una ciudad</option>
-              @for(municipio of municipio(); track municipio.Id){
-                <option [value]="municipio.Id">{{ municipio.Nombre }}</option>
-              }
-            </select>
-        </div>  
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label for="Nofactura">Numero Factura :</label>
-            <input 
-              type="text"
-              class="form-control form-control-sm"
-              id="Nofactura"
-              name="Nofactura"
-            /> 
-        </div>  
-        <div class="form-group col-md-6">
-            <label for="Descripcion">Descripcion :</label>
-            <textarea 
-              type="text"
-              class="form-control form-control-sm"
-              id="Descripcion"
-              name="Descripcion"
-              rows="3"
-            ></textarea> 
-        </div>  
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label for="Cantidad">Cantidad :</label>
-            <input 
-              type="number"
-              class="form-control form-control-sm"
-              id="Cantidad"
-              name="Cantidad"
-            /> 
-        </div>  
-        <div class="form-group col-md-6">
-            <label for="Valor">Valor :</label>
-            <input 
-              type="number"
-              class="form-control form-control-sm"
-              id="Valor"
-              name="Valor"
-              rows="3"
-            /> 
-        </div>  
-    </div>
-  </div>
+  <form class="formulario-container" [formGroup]="facturacionFormulario" (ngSubmit)="onSubmit()" >
+      <header class="header-formulario">
+            <h3>Factura de Venta</h3>
+        </header>
+    <div class="grid-layout">
+   <mat-form-field appearance="outline">
+        <mat-label>Número Documento</mat-label>
+        <input matInput formControlName="Documento">
+         <mat-icon matSuffix>numbers</mat-icon>
+      </mat-form-field>
 
-  <div class="d-grid gap-2 mt-5">
-  <button class="btn btn-outline-primary btn-sm" type="submit">Guardar</button>
-  <button class="btn btn-outline-secondary btn-sm" type="button">Cancelar</button>
-</div>
-</form>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="Nombre">
+          <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+   
+
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <mat-select formControlName="Departamento" (selectionChange)="ChangeDepartamento($event)">
+          <mat-option value="">Seleccione un departamento</mat-option>
+          @for(dep of departamento(); track dep.Id){
+            <mat-option [value]="dep.Id">{{ dep.Nombre }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Ciudad</mat-label>
+        <mat-select formControlName="Ciudad">
+          <mat-option value="">Seleccione una ciudad</mat-option>
+          @for(muni of municipio(); track muni.Id){
+            <mat-option [value]="muni.Id">{{ muni.Nombre }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+  
+
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Número Factura</mat-label>
+        <input matInput formControlName="Nofactura">
+          <mat-icon matSuffix>note</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="Descripcion" rows="1"></textarea>
+          <mat-icon matSuffix>abc</mat-icon>
+      </mat-form-field>
+   
+
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="Cantidad">
+          <mat-icon matSuffix>1k</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor</mat-label>
+        <mat-icon matSuffix iconPositionEnd>attach_money</mat-icon>
+        <input matInput type="number" formControlName="Valor">
+        <span matPrefix style="margin-left: 6px;">$&nbsp;</span>
+      </mat-form-field>
+  
+    </div>
+    <footer class="acciones-formulario">
+        <button matButton="tonal" class="m-1" type="submit"><mat-icon iconPositionEnd>save</mat-icon>Guardar</button>
+        <button matButton="tonal" class="m-1" type="button"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
+    
+    </footer>  
+  </form>
+
 
 
 

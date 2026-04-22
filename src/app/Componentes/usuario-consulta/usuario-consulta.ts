@@ -4,14 +4,23 @@ import { ColDef, ModuleRegistry, AllCommunityModule ,ValueFormatterParams ,theme
 import { usuario } from '../../Models/UsuarioInterface';
 import { Usuarioservice } from '../../Service/Usuario/usuarioservice';
 import { toSignal } from '@angular/core/rxjs-interop';
-
+import { MatCard ,MatCardHeader,MatCardTitle,MatCardContent,MatCardSubtitle } from "@angular/material/card";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatGridListModule } from "@angular/material/grid-list";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-usuario-consulta',
   standalone:true,
-  imports: [AgGridAngular ],
+  imports: [AgGridAngular, MatCard, MatCardHeader, MatCardTitle, MatInputModule,
+    MatCardContent, MatFormFieldModule, MatIconModule, MatButtonModule, MatDividerModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule],
   templateUrl: './usuario-consulta.html',
   styleUrl: './usuario-consulta.css',
 })

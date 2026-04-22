@@ -1,0 +1,74 @@
+/* Contenedor principal */
+.formulario-container {
+  max-width: 50%;
+  margin: 2rem auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header-formulario h3 {
+  color: #3f51b5;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+/* El Grid: 2 columnas en PC, 1 en Celular */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
+  gap: 16px; /* Espacio entre campos */
+}
+
+
+/* Ajuste para móviles */
+@media (max-width: 1500px) {
+  .formulario-container {
+  max-width: 90%;
+  margin: 2rem auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+  
+  .grid-layout {
+    grid-template-columns: 1fr; /* 1 sola columna en pantallas pequeñas */
+  }
+
+}
+
+
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+  .formulario-container {
+  max-width: 90%;
+  margin: 2rem auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+  
+  .grid-layout {
+    grid-template-columns: 1fr; /* 1 sola columna en pantallas pequeñas */
+  }
+
+}
+
+/* Forzamos a que Material ocupe todo el ancho de su celda del grid */
+mat-form-field {
+  width: 100%;
+}
+
+.acciones-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
