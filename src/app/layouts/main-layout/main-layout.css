@@ -1,0 +1,170 @@
+/* Contenedor principal para ocupar toda la pantalla */
+.sidenav-container {
+  height: 100vh;
+}
+
+/* Estilo del menú lateral */
+.custom-sidenav {
+  width: 250px;
+  background-color: #ffffff !important; /* Fondo blanco */
+  border-right: 1px solid #eeeeee; /* Línea divisoria sutil */
+}
+
+/* Estilo de los items del menú */
+.custom-sidenav mat-list-item {
+  color: #000000 !important; /* Letras negras */
+}
+
+/* Tipografía delgada */
+.custom-sidenav span[matListItemTitle] {
+  font-weight: 300; /* Letras delgadas */
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Iconos en negro */
+.custom-sidenav mat-icon {
+  color: #000000;
+  font-weight: 300;
+}
+
+
+/* Quitar bordes y sombras del panel para diseño plano */
+.custom-expansion {
+  background: transparent !important;
+}
+
+.custom-expansion .mat-expansion-panel-header {
+  padding: 0 16px;
+  height: 48px !important;
+}
+
+/* Alineación de icono y texto en el encabezado del submenú */
+.custom-expansion mat-panel-title {
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-weight: 300;
+}
+
+.custom-expansion mat-icon {
+  margin-right: 32px; /* Alineación con los items simples */
+  font-weight: 300;
+}
+
+.menu-label {
+  font-weight: 300;
+}
+
+/* Sangría para los sub-items */
+.sub-list {
+  padding-left: 40px !important;
+}
+
+.sub-list mat-list-item {
+  height: 40px !important;
+  font-size: 0.9rem;
+}
+
+/* Quitar la línea inferior del panel al expandirse */
+.mat-expansion-panel-spacing {
+  margin: 0 !important;
+}
+
+/* Quitar bordes y sombras del panel para diseño plano */
+.custom-expansion {
+  background: transparent !important;
+}
+
+.custom-expansion .mat-expansion-panel-header {
+  padding: 0 16px;
+  height: 48px !important;
+}
+
+/* Alineación de icono y texto en el encabezado del submenú */
+.custom-expansion mat-panel-title {
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-weight: 300;
+}
+
+.custom-expansion mat-icon {
+  margin-right: 32px; /* Alineación con los items simples */
+  font-weight: 300;
+}
+
+.menu-label {
+  font-weight: 300;
+}
+
+/* Sangría para los sub-items */
+.sub-list {
+  padding-left: 40px !important;
+}
+
+.sub-list mat-list-item {
+  height: 40px !important;
+  font-size: 0.9rem;
+}
+
+/* Quitar la línea inferior del panel al expandirse */
+.mat-expansion-panel-spacing {
+  margin: 0 !important;
+}
+
+/* Barra superior blanca con letras negras */
+.custom-toolbar {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom: 1px solid #eeeeee;
+  font-weight: 300;
+}
+
+.custom-toolbar mat-icon {
+  font-weight: 300;
+}
+
+/* Ajuste para que el contenedor ocupe el resto del alto */
+.sidenav-container {
+  height: calc(100vh - 64px); /* Resta el alto de la toolbar */
+}
+
+.main-content {
+  padding: 20px;
+}
+
+/* Indenta la lista interna para que se vea jerárquica */
+.sub-list {
+  padding-left: 16px !important;
+}
+
+/* Alineación de iconos y etiquetas en el header del panel */
+.mat-expansion-panel-header mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Espacio entre el icono y el texto */
+}
+
+/* Eliminar el padding extra que Material agrega a veces en paneles */
+.custom-expansion .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .custom-sidenav {
+  width: 600px;
+  background-color: #ffffff !important; /* Fondo blanco */
+  border-right: 1px solid #eeeeee; /* Línea divisoria sutil */
+}
+
+@media screen and (max-width: 950px) {
+  .custom-sidenav {
+  width: 350px;
+  background-color: #ffffff !important; /* Fondo blanco */
+  border-right: 1px solid #eeeeee; /* Línea divisoria sutil */
+}
+
+
+}
+

@@ -1,0 +1,102 @@
+<mat-toolbar class="custom-toolbar">
+  <!-- El (click) ahora llamará a la propiedad que definiremos en el TS -->
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Almacen</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- Agregamos #sidenav aquí -->
+  <mat-sidenav #sidenav mode="over" [opened]="false" class="custom-sidenav">
+    <mat-nav-list>
+      <!-- ... tu contenido ... -->
+       <!-- Ítem interno 1 con icono -->
+      
+
+      <!-- Submenú de Proyectos -->
+<mat-expansion-panel class="mat-elevation-z0 custom-expansion">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>note</mat-icon>
+      <span class="menu-label">Facturación</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-nav-list class="sub-list">
+     <a mat-list-item routerLink="/Facturacion">
+        <mat-icon matListItemIcon>note_add</mat-icon>
+        <span matListItemTitle>Creacion</span>
+      </a> 
+      <a mat-list-item routerLink="/FacturacionConsulta">
+        <mat-icon matListItemIcon>searchs</mat-icon>
+        <span matListItemTitle>Consulta</span>
+      </a>
+  </mat-nav-list>
+</mat-expansion-panel>
+<mat-expansion-panel class="mat-elevation-z0 custom-expansion">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>inventory</mat-icon>
+      <span class="menu-label">Productos</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-nav-list class="sub-list">
+     <a mat-list-item routerLink="/Productos">
+        <mat-icon matListItemIcon>post_add</mat-icon>
+        <span matListItemTitle>Creacion</span>
+      </a> 
+      <!-- <a mat-list-item routerLink="/proyectos/activos">
+        <mat-icon matListItemIcon>searchs</mat-icon>
+        <span matListItemTitle>Consulta</span>
+      </a> -->
+  </mat-nav-list>
+</mat-expansion-panel>
+<mat-expansion-panel class="mat-elevation-z0 custom-expansion">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>person</mat-icon>
+      <span class="menu-label">Clientes</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-nav-list class="sub-list">
+     <a mat-list-item routerLink="/Cliente">
+        <mat-icon matListItemIcon>person_add</mat-icon>
+        <span matListItemTitle>Creacion</span>
+      </a> 
+      <a mat-list-item routerLink="/ClientesConsulta">
+        <mat-icon matListItemIcon>person_searchs</mat-icon>
+        <span matListItemTitle>Consulta</span>
+      </a>
+  </mat-nav-list>
+</mat-expansion-panel>
+
+<mat-expansion-panel class="mat-elevation-z0 custom-expansion">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>person_outline</mat-icon>
+      <span class="menu-label">Usuarios</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-nav-list class="sub-list">
+     <a mat-list-item routerLink="/Usuarios">
+        <mat-icon matListItemIcon>person_add</mat-icon>
+        <span matListItemTitle>Creacion</span>
+      </a> 
+      <a mat-list-item routerLink="/UsuarioConsulta">
+        <mat-icon matListItemIcon>person_searchs</mat-icon>
+        <span matListItemTitle>Consulta</span>
+      </a>
+  </mat-nav-list>
+</mat-expansion-panel>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="main-content">      
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>  
+</mat-sidenav-container>
+
+
