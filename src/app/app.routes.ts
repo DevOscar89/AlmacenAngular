@@ -9,7 +9,7 @@ import { FacturacionConsulta } from './Componentes/facturacion-consulta/facturac
 import { Productos } from './Componentes/productos/productos';
 
 export const routes: Routes = [
-    {   path: '', redirectTo: 'UsuarioConsulta', pathMatch: 'full' },
+    {   path: '', redirectTo: 'Login', pathMatch: 'full' },
     {   path: 'Facturacion', component: Facturacion },   
     {   path: 'Login', component: Login },   
     {   path: 'Usuarios', component: Usuarios },   

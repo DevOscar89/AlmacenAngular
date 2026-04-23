@@ -1,70 +1,63 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mb-3">
-            <h3 class="form-label text-center">Consulta Facturas</h3>
-        </div>  
-        <div class="col-md-6">
-            <label class="form-label">Documento :</label>
-            <input 
-                type="text"
-                class="form-control"
-                name="Documento"
-                id="Documento"
-                />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Numero factura :</label>
-            <input 
-                type="text"
-                class="form-control"
-                name="NoFactura"
-                id="NoFactura"
-                />
-        </div>        
-        <div class="col-md-6">
-            <label class="form-label">Fecha Inicio :</label>
-            <input 
-                type="date"
-                class="form-control"
-                name="NoFactura"
-                id="NoFactura"
-                />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Fecha Final :</label>
-            <input 
-                type="date"
-                class="form-control"
-                name="NoFactura"
-                id="NoFactura"
-                />
-        </div>
-        <div class="col-md-6">
-            <input 
-               type="checkbox"
-               class="form-check-input"
-            />
-            <label class="form-check-label">Fechas</label>
-        </div>
-        <div class="col-md-12">
-            @defer (on immediate) {
-                <ag-grid-angular
-                style="width: 100%; height: 400px;"
-                [theme]="theme"
-                [columnDefs]="columnDefs"  
-                [rowData]="rowData()"            
-                [pagination]="true"            
-                [rowSelection]="rowSelection"                      
-                [paginationPageSizeSelector]="[5,10, 20, 50]"
-                 (selectionChanged)="onSelectionChanged($event)" 
-                >                
-             </ag-grid-angular>
-            } @if(FacturaSeleccionado()){
-                <div class="alert alert-warning">
-                    <label for="">Facturas  :<strong>{{FacturaSeleccionado()?.NoFactura}}</strong></label>
-                </div>
-            }
-            
-        </div>
-    </div>
-</div>
+<mat-card class="cliente-card">
+    <mat-card-header>
+        <mat-card-title>Consulta Facturas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form action="" class="form-grid">
+            <div class="row-flex">
+                <mat-form-field appearance="outline">
+                <mat-label>Número de documento   :</mat-label>
+                <input matInput>
+                <mat-icon matSuffix>numbers</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                <mat-label>Número de Factura    :</mat-label>
+                <input matInput>
+                <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+             <div class="row-flex">  
+                 <mat-form-field appearance="outline">
+                 <mat-label>Fecha inicial</mat-label>
+                 <input matInput [matDatepicker]="picker">
+                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                 <mat-datepicker #picker></mat-datepicker>
+                 <mat-hint>Fecha de inicio</mat-hint>
+                 </mat-form-field>
+
+                 <mat-form-field appearance="outline">
+                 <mat-label>Fecha final</mat-label>
+                 <input matInput [matDatepicker]="picker2">
+                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                 <mat-datepicker #picker2></mat-datepicker>
+                 <mat-hint>Fecha final</mat-hint>
+                 </mat-form-field>
+              </div>   
+            <div class="actions">       
+                <button matButton="tonal" type="submit"><mat-icon>search</mat-icon>Consultar</button>
+                <button matButton="tonal" type="button"><mat-icon>cleaning_services</mat-icon> Limpiar</button>
+                <button matButton="tonal" type="button"><mat-icon>download</mat-icon> Descargar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<mat-card class="cliente-card">
+    @defer (on immediate) {
+            <ag-grid-angular
+            style="width: 100%; height: 400px;"
+            [theme]="theme"
+            [columnDefs]="columnDefs"  
+            [rowData]="rowData()"            
+            [pagination]="true"            
+            [rowSelection]="rowSelection"                      
+            [paginationPageSizeSelector]="[5,10, 20, 50]"
+             (selectionChanged)="onSelectionChanged($event)" 
+            >                
+         </ag-grid-angular>
+        } @if(FacturaSeleccionado()){
+            <mat-label>Facturas  :<strong>{{FacturaSeleccionado()?.NoFactura}}</strong></mat-label>  
+            <mat-label>Descripción  :<strong>{{FacturaSeleccionado()?.Descripcion}}</strong></mat-label>
+            <mat-label>Valor  :<strong>{{FacturaSeleccionado()?.Valor}}</strong></mat-label>          
+        }
+</mat-card>

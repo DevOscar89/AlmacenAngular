@@ -1,28 +1,68 @@
-      
-            
+<mat-card class="cliente-card">
+  <mat-card-header>
+    <mat-card-title>Registro de Productos</mat-card-title>
+    <mat-card-subtitle>(*) Campos obligatorios</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form action="" class="form-grid">
+       <div class="row-flex">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>        
 
-          <div class="container">
-            <div class="row">  
-                 <div class="col-md-12 text-center mb-3">
-                    <span class="fs-3 fw-bold">Registro de Productos</span>
-                </div > 
-                    <mat-form-field  appearance="outline" class="col-md-12">
-                        <mat-label>Descripción :</mat-label>
-                        <textarea matInput #input type="text" row="4"></textarea>                  
-                        <mat-icon matSuffix>add_circle_outline</mat-icon>    
-                    </mat-form-field>  
-                     <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
-                        <mat-label>Valor :</mat-label>
-                        <input matInput type="number" placeholder="0">
-                        <span matPrefix style="margin-left: 10px;">$&nbsp;</span>             
-                    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Categoria  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>category</mat-icon>
+        </mat-form-field>
+         
+     </div>
+     <div class="row-flex">
+       <mat-form-field appearance="outline">
+            <mat-label>Descripción  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>abc</mat-icon>
+        </mat-form-field>
+         
+       </div>
+     <div class="row-flex">
+        <mat-form-field appearance="outline">
+            <mat-label>Marca  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>copyright</mat-icon>
+        </mat-form-field>
+     
+         
+        <mat-form-field appearance="outline">
+            <mat-label>Estado  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>question_mark</mat-icon>
+        </mat-form-field>
+     </div>
+     <div class="row-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>stock  :</mat-label>
+            <input matInput type="number">
+            <mat-icon matSuffix>inventory</mat-icon>
+        </mat-form-field>
+         
+        <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Valor  :</mat-label>
+            <mat-icon matSuffix iconPositionEnd>attach_money</mat-icon>
+            <input matInput type="number">
+            <span matPrefix style="margin-left: 10px;">$&nbsp;</span>   
+        </mat-form-field>
+     </div>
+    </form>     
+     <div class="actions">
+        <button matButton="tonal" matFab extended class="m-1"><mat-icon>save</mat-icon> Guardar</button>
+        <button matButton="tonal" matFab extended class="m-1"><mat-icon>cancel</mat-icon> Cancelar</button>
+     </div>     
+  </mat-card-content>
+  </mat-card>    
             
-            <div class="col-md-12 mt-1">
-                <button matButton="tonal" matFab extended class="m-1"><mat-icon iconPositionEnd>save</mat-icon> Guardar</button>
-                <button matButton="tonal" matFab extended class="m-1"><mat-icon iconPositionEnd>cancel</mat-icon> Cancelar</button>
-            </div>          
-            
-        </div>
         
 
       

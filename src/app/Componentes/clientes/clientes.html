@@ -17,11 +17,13 @@
               <mat-option [value]="tipo.Codigo">{{ tipo.Descripcion }}</mat-option>
             }
           </mat-select>
+          <mat-icon matSuffix>filter_list</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Número Documento</mat-label>
           <input matInput formControlName="Documento" required>
+          <mat-icon matSuffix>numbers</mat-icon>  
         </mat-form-field>
       </div>
 
@@ -30,11 +32,13 @@
         <mat-form-field appearance="outline">
           <mat-label>Primer Nombre</mat-label>
           <input matInput formControlName="PrimerNombre" appUppercase required>
+          <mat-icon matSuffix>person_outline</mat-icon>  
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Segundo Nombre</mat-label>
           <input matInput formControlName="SegundoNombre" appUppercase>
+          <mat-icon matSuffix>person_outline</mat-icon>  
         </mat-form-field>
       </div>
 
@@ -43,11 +47,13 @@
         <mat-form-field appearance="outline">
           <mat-label>Primer Apellido</mat-label>
           <input matInput formControlName="PrimerApellido" appUppercase required>
+          <mat-icon matSuffix>person_outline</mat-icon>  
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Segundo Apellido</mat-label>
           <input matInput formControlName="SegundoApellido" appUppercase required>
+          <mat-icon matSuffix>person_outline</mat-icon>  
         </mat-form-field>
       </div>
 
@@ -63,31 +69,37 @@
         <mat-form-field appearance="outline">
           <mat-label>País Nacimiento</mat-label>
           <mat-select formControlName="PaisNacimiento" (selectionChange)="changePaisNacimiento($event)" required>
+            <mat-option value="">Seleccione</mat-option>
             @for(p of paises(); track p.Id){
               <mat-option [value]="p.Id">{{ p.Nombre }}</mat-option>
             }
           </mat-select>
+           <mat-icon matSuffix>map</mat-icon>  
         </mat-form-field>
       </div>
 
       <!-- Ubicación Nacimiento -->
       <div class="row-flex">
         <mat-form-field appearance="outline">
-          <mat-label>Depto. Nacimiento</mat-label>
+          <mat-label>Departamento Nacimiento</mat-label>
           <mat-select formControlName="DepartamentoNacimiento" (selectionChange)="changeDepartamentoNacimiento($event)" required>
+            <mat-option value="">Seleccione</mat-option>
             @for(d of departamentos(); track d.Id){
               <mat-option [value]="d.Id">{{ d.Nombre }}</mat-option>
             }
           </mat-select>
+          <mat-icon matSuffix>location_city </mat-icon>  
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Ciudad Nacimiento</mat-label>
           <mat-select formControlName="CiudadNacimiento" required>
+            <mat-option value="">Seleccione</mat-option>
             @for(m of municipios(); track m.Id){
               <mat-option [value]="m.Id">{{ m.Nombre }}</mat-option>
             }
           </mat-select>
+          <mat-icon matSuffix>house_siding</mat-icon>  
         </mat-form-field>
       </div>
 
@@ -111,19 +123,24 @@
         <mat-form-field appearance="outline">
           <mat-label>Sexo</mat-label>
           <mat-select formControlName="Sexo">
+            <mat-option value="">Seleccione</mat-option>
             @for(s of sexo(); track s.Id){
               <mat-option [value]="s.Codigo">{{ s.Descripcion }}</mat-option>
             }
           </mat-select>
+              <mat-icon matSuffix>male</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Ocupación</mat-label>
           <mat-select formControlName="Ocupacion">
+            <mat-option value="">Seleccione</mat-option>
             @for(o of ocupacion(); track o.Id){
               <mat-option [value]="o.Codigo">{{ o.Descripcion }}</mat-option>
             }
           </mat-select>
+         <mat-icon matSuffix>work</mat-icon>
+          
         </mat-form-field>
       </div>
 

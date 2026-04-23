@@ -102,6 +102,7 @@
         <mat-label>Roles</mat-label>
         <mat-select appearance="outline" formControlName="Rol">
         <mat-option value="">Seleccione un rol</mat-option>
+           
            @for(roles of Roles(); track roles.Id)
            {
             <mat-option [value]="roles.Codigo">{{ roles.Rol }}</mat-option>           
@@ -110,6 +111,7 @@
             @if(usuarioFormulario.get('Rol')?.hasError('required')){
                 <mat-error>El rol es <strong>obligatorio</strong>.</mat-error>
             }
+            <mat-icon matSuffix>manage_accounts</mat-icon>    
         </mat-form-field>  
     </div>
     <footer class="acciones-formulario">

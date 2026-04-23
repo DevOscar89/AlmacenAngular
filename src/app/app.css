@@ -1,10 +1,14 @@
 .menu-container {
-  height: 100vh; /* Ocupa toda la pantalla */
+  height: 150vh; /* Ocupa toda la pantalla */
+  background-color: #bdbdbd;
+  color:#000000;
 }
 
 .sidenav {
   width: 250px;
-  border-right: 1px solid #e0e0e0;
+  border-right: 1px solid #bdbdbd;
+  background-color: #eeeeee;
+  color:#9e9e9e;
 }
 
 .toolbar {
@@ -12,8 +16,8 @@
   align-items: center;
   padding: 0 16px;
   height: 64px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: #bdbdbd;
+  border-bottom: 1px solid #eeeeee;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -29,10 +33,29 @@
 .menu-expansion {
   box-shadow: none !important;
   background: transparent !important;
+  padding: 0;
 }
 
 .sub-menu mat-icon {
   font-size: 18px;
   width: 18px;
   height: 18px;
+  
 }
+
+.sub-menu{
+   background-color: #eeeeee;  
+}
+
+
+
+mat-panel-title span{
+    color:#bdbdbd;
+    padding: 0;
+}
+
+mat-expansion-panel mat-expansion-panel-header mat-panel-title mat-icon{
+   color:#9e9e9e;
+    margin-right: 20px;
+}
+

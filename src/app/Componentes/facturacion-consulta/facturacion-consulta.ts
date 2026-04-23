@@ -1,23 +1,21 @@
-import { ChangeDetectionStrategy, 
-         Component, 
-         inject, 
-         signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ColDef, ModuleRegistry, AllCommunityModule,themeMaterial, ValueFormatterParams, RowSelectionOptions, SelectionChangedEvent} from 'ag-grid-community';
+import { MatCard ,MatCardHeader,MatCardTitle,MatCardContent} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { AgGridAngular} from 'ag-grid-angular';
-import { ColDef, ModuleRegistry,
-         AllCommunityModule,themeAlpine, 
-         ValueFormatterParams, 
-         RowSelectionOptions,
-         themeBalham,themeQuartz,themeMaterial, 
-         SelectionChangedEvent} from 'ag-grid-community';
 import { Facturacionservice } from '../../Service/Facturacion/facturacionservice';  
 import { Factura } from '../../Models/FacturaInterface';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-facturacion-consulta',
-  imports: [AgGridAngular],
+  imports: [AgGridAngular,MatCard,MatCardHeader,MatCardTitle,MatCardContent,MatInputModule,MatIconModule,MatButtonModule,MatDatepickerModule,MatNativeDateModule],
   standalone: true,
   templateUrl: './facturacion-consulta.html',
   styleUrl: './facturacion-consulta.css',
@@ -26,7 +24,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 export class FacturacionConsulta {
   private facturacionservice = inject(Facturacionservice);  
-  public theme = themeAlpine;  
+  public theme = themeMaterial;  
   public FacturaSeleccionado = signal<Factura | null>(null); //Signal almacena la fila seleccionada
   public pageSize = signal(5);
 

@@ -1,27 +1,26 @@
-<body>
-<form class="container">
-    <div class="row">  
-        <div class="col-md-6">
-           
-        </div>
-        <div class="col-md-6 mt-5 shadow-sm p-3 mb-5 rounded">
-           <div class="row">
-                <div class="col-md-12 mb-3">
-                    <h3 class="form-label text-center">Login</h3>
-                </div>  
-                <div class="col-md-12">
-                    <label class="form-label form-label-sm">Usuario :</label>
-                    <input class="form-control  form-control-sm" type="text">
-                </div>  
-                <div class="col-md-12">
-                    <label class="form-label form-label-sm">Contraseña :</label>
-                    <input class="form-control  form-control-sm" type="password">
-                </div> 
-           </div>
-            <div class="d-grid gap-2 mt-5">
-              <button class="btn btn-primary btn-sm" type="submit">Entrar</button>
-           </div>
-        </div>       
-    </div>         
-</form>
-</body>
+<mat-card class="cliente-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Debe estar registrado.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form action="" class="form-grid">
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario  :</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>person_outloand</mat-icon>
+        </mat-form-field>        
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña  :</mat-label>
+            <input matInput type="password">
+            <mat-icon matSuffix>key</mat-icon>
+        </mat-form-field>
+         
+    </form>     
+     <div class="actions">
+       <button matButton="tonal"  type="submit"><mat-icon>check</mat-icon>Login</button>
+      </div>     
+  </mat-card-content>
+  </mat-card>    
+            

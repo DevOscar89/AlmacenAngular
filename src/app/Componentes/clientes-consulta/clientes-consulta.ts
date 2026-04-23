@@ -17,8 +17,16 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-clientes-consulta',
-  imports: [AgGridAngular,MatCard ,MatCardHeader,MatCardTitle,MatCardContent,
-    MatCardSubtitle,MatInputModule,MatButtonModule,MatIconModule],
+  imports: [
+    AgGridAngular,
+    MatCard ,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   standalone: true,
   templateUrl: './clientes-consulta.html',
   styleUrl: './clientes-consulta.css',
