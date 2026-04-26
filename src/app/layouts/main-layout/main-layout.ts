@@ -7,10 +7,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [MatToolbarModule,
+  imports: [MatToolbarModule,RouterOutlet,
     MatButtonModule,
      MatSidenavModule, 
     MatListModule, 

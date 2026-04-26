@@ -1,11 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
-
-.compact-from{
-    @include mat.form-field-density(-5);
+/* En tu archivo .component.css */
+.mi-subheader-personalizado {
+  color: #0e0e0e;         /* Cambia el color del texto */
+  margin-top: 20px;       /* Ajusta el margen superior */
+  display: block;         /* Asegura que el margen se aplique correctamente al span */
+  font-weight: 500;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}

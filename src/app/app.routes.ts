@@ -10,16 +10,20 @@ import { Productos } from './Componentes/productos/productos';
 import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
+     {
+        path: '',
+        redirectTo: 'Login',
+        pathMatch: 'full'
+    },
     {
-        path: 'login',
+        path: 'Login',
         component: Login
     },
 
     {   path: '',
         component: MainLayout,
         children:[
-              {   path: 'Facturacion', component: Facturacion },   
-              {   path: 'Login', component: Login },   
+              {   path: 'Facturacion', component: Facturacion },            
               {   path: 'Usuarios', component: Usuarios },   
               {   path: 'Cliente', component: Clientes },   
               {   path: 'UsuarioConsulta', component: UsuarioConsulta },   

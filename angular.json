@@ -56,7 +56,11 @@
               "outputHashing": "all"
             },
             "development": {
-              "optimization": false,
+              "optimization": {
+                  "fonts": false,
+                  "styles": true,
+                  "scripts": true
+              },
               "extractLicenses": false,
               "sourceMap": true,
               "fileReplacements": [

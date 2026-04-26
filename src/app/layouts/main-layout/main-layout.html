@@ -12,7 +12,7 @@
     <mat-nav-list>
       <!-- ... tu contenido ... -->
        <!-- Ítem interno 1 con icono -->
-      
+    <span matSubheader class="mi-subheader-personalizado">Modulos</span>
 
       <!-- Submenú de Proyectos -->
 <mat-expansion-panel class="mat-elevation-z0 custom-expansion">
@@ -27,6 +27,7 @@
         <mat-icon matListItemIcon>note_add</mat-icon>
         <span matListItemTitle>Creacion</span>
       </a> 
+       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/FacturacionConsulta">
         <mat-icon matListItemIcon>searchs</mat-icon>
         <span matListItemTitle>Consulta</span>
@@ -54,7 +55,7 @@
 <mat-expansion-panel class="mat-elevation-z0 custom-expansion">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <mat-icon>person</mat-icon>
+      <mat-icon>boy</mat-icon>
       <span class="menu-label">Clientes</span>
     </mat-panel-title>
   </mat-expansion-panel-header>
@@ -63,6 +64,7 @@
         <mat-icon matListItemIcon>person_add</mat-icon>
         <span matListItemTitle>Creacion</span>
       </a> 
+       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/ClientesConsulta">
         <mat-icon matListItemIcon>person_searchs</mat-icon>
         <span matListItemTitle>Consulta</span>
@@ -70,6 +72,14 @@
   </mat-nav-list>
 </mat-expansion-panel>
 
+
+
+    </mat-nav-list>
+      <mat-divider></mat-divider>
+    <mat-nav-list>
+        <span matSubheader class="mi-subheader-personalizado">Configuraciones y permisos</span>
+
+      <!-- Submenú de Proyectos -->
 <mat-expansion-panel class="mat-elevation-z0 custom-expansion">
   <mat-expansion-panel-header>
     <mat-panel-title>
@@ -82,13 +92,13 @@
         <mat-icon matListItemIcon>person_add</mat-icon>
         <span matListItemTitle>Creacion</span>
       </a> 
+       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/UsuarioConsulta">
         <mat-icon matListItemIcon>person_searchs</mat-icon>
         <span matListItemTitle>Consulta</span>
       </a>
   </mat-nav-list>
 </mat-expansion-panel>
-
     </mat-nav-list>
   </mat-sidenav>
 
